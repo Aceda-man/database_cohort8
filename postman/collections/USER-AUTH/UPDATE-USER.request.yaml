@@ -1,0 +1,13 @@
+$kind: http-request
+url: localhost:5555/users/update-user/6a9be977a33e5e1999b3d78a
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\" : \"Adegboyega Adedeji\",\r
+
+    \    \"password\" : \"Adedeji11\"\r
+
+    }"
+order: 3958344070376924

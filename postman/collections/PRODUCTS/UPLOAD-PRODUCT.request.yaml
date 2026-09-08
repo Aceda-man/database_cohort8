@@ -1,0 +1,15 @@
+$kind: http-request
+url: 'http://localhost:5555/products/upload/6a9be977a33e5e1999b3d78a'
+method: POST
+order: 1788893262209
+body:
+  type: json
+  content: |-
+    {
+        "name" : "bag",
+        "description" : "chanel",
+        "price" : 60000,
+        "category" : "women",
+        "stock"  : 1,
+        "image" : "image"
+    }

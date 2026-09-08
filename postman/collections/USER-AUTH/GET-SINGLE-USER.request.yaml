@@ -1,0 +1,4 @@
+$kind: http-request
+url: localhost:5555/users/get-one-user/6a9be977a33e5e1999b3d78a
+method: GET
+order: 3707590908782790
