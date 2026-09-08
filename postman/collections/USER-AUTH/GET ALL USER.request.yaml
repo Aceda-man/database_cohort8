@@ -1,4 +1,0 @@
-$kind: http-request
-url: localhost:5555/users/all-users
-method: GET
-order: 3495043531891155
