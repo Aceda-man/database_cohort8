@@ -1,36 +1,38 @@
 const productModel = require('../model/productModel');
 const userModel = require('../model/userModel');
-/**
- * create : upload product
- * get all : 
- * get one
- * update : update product (stock)
- * delete
- */
+const cloudinary = require('../config/cloudinary');
 
 //create / upload
 const uploadProduct = async (req, res) => {
     try {
         const getUserID = await userModel.findById(req.params.userId)
-        const { name, description, price, category, stock, quantity, image } = req.body
         if (!getUserID) {
             return res.status(404).json({
                 message: "User not found"
             })
         }
-        const product = await productModel.create(
-            {
-                name, description, price, category, stock, quantity, image
 
+        if (!req.file) {
+            return res.status(400).json({
+                message: "image is required...please upload an image"
             })
- 
-        await getUserID.products.push(product._id)
+        }
+
+        const result = await cloudinary.uploader.upload(req.file.path)
+        const imageUrl = result.secure_url
+
+        const { name, description, price, category, stock, quantity } = req.body
+
+        const product = await productModel.create({
+            name, description, price, category, stock, quantity, image: imageUrl
+        })
+
+        getUserID.products.push(product._id)
         await getUserID.save()
-        return res.status(201).json(
-            {
-                message: 'Product uploaded successfully', product
 
-            })
+        return res.status(201).json({
+            message: 'Product uploaded successfully', product
+        })
     } catch (error) {
         return res.status(500).json({ message: error.message })
     }

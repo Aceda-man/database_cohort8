@@ -2,9 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const userRoute = require("./routes/userRoute.js");
 const productRoutes = require("./routes/productRoutes.js")
+const env = require("dotenv");
+
+env.config();
 
 const compass_string = "mongodb://localhost:27017/cohort8_db";
-const atlas_string = "mongodb+srv://Adeyemidb_user:dBuTJpVdkAsCmaae@cluster0.6cs46ar.mongodb.net/?appName=Cluster0";
+const atlas_string = process.env.MONGODB_URI;
 
 const dns = require('dns');
 dns.setServers(['8.8.8.8', '1.1.1.1']);
